@@ -1,0 +1,1628 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BSc CS Notes</title>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7ff;
+    color: #222;
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginPage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#6a11cb,#2575fc,#00c6ff);
+    padding: 20px;
+}
+
+.login-box {
+    width: 390px;
+    padding: 40px 35px;
+    background: white;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,.25);
+}
+
+.login-logo {
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 40px;
+    background: linear-gradient(135deg,#ff512f,#dd2476);
+}
+
+.login-box h1 {
+    color: #4b1dbd;
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    outline: none;
+    font-size: 16px;
+}
+
+.login-box input:focus {
+    border-color: #6a11cb;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#6a11cb,#2575fc);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    transform: translateY(-2px);
+}
+
+#loginMessage {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.demo-login {
+    margin-top: 20px;
+    padding: 12px;
+    background: #f0edff;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   NOTES PAGE
+========================= */
+
+#notesPage {
+    display: none;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    min-height: 70px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg,#4b1dbd,#2575fc,#00c6ff);
+}
+
+.logo-text {
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #ffe600;
+}
+
+.logout-btn {
+    padding: 9px 18px;
+    border: 2px solid white;
+    border-radius: 20px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 400px;
+    padding: 70px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background: linear-gradient(120deg,#ff512f,#dd2476,#6a11cb);
+}
+
+.hero-text {
+    max-width: 650px;
+}
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.explore-btn {
+    display: inline-block;
+    padding: 14px 25px;
+    border-radius: 30px;
+    background: white;
+    color: #6a11cb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.computer-icon {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    background: rgba(255,255,255,.2);
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-section {
+    padding: 40px 20px;
+    text-align: center;
+    background: white;
+}
+
+.search-section h2 {
+    color: #4b1dbd;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    width: 90%;
+    max-width: 600px;
+    padding: 16px 20px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+}
+
+
+/* =========================
+   YEAR
+========================= */
+
+.year-section {
+    padding: 60px 7%;
+}
+
+.year-section h2 {
+    text-align: center;
+    color: #4b1dbd;
+    margin-bottom: 35px;
+    font-size: 32px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+    gap: 25px;
+}
+
+.subject-card {
+    position: relative;
+    padding: 30px 25px;
+    background: white;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    transition: .3s;
+    overflow: hidden;
+}
+
+.subject-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.15);
+}
+
+.subject-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg,#ff512f,#dd2476,#6a11cb,#2575fc);
+}
+
+.subject-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.subject-card h3 {
+    margin-bottom: 12px;
+}
+
+.subject-card p {
+    color: #666;
+    line-height: 1.6;
+    min-height: 70px;
+}
+
+.notes-btn {
+    margin-top: 20px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg,#6a11cb,#2575fc);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* =========================
+   TOPIC MODAL
+========================= */
+
+#topicModal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+    padding: 20px;
+}
+
+.topic-box {
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    margin: 4% auto;
+    padding: 30px;
+    background: white;
+    border-radius: 20px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 35px;
+    cursor: pointer;
+    color: #777;
+}
+
+.close:hover {
+    color: red;
+}
+
+#topicTitle {
+    color: #4b1dbd;
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   TOPIC BUTTONS
+========================= */
+
+.topic-list {
+    display: grid;
+    gap: 12px;
+}
+
+.topic-button {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #f0edff;
+    color: #4b1dbd;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.topic-button:hover {
+    background: #6a11cb;
+    color: white;
+}
+
+
+/* =========================
+   SHORT NOTE
+========================= */
+
+.short-note {
+    padding: 20px;
+    background: #f7f8ff;
+    border-left: 5px solid #6a11cb;
+    border-radius: 10px;
+    line-height: 1.8;
+}
+
+.short-note h3 {
+    color: #4b1dbd;
+    margin-bottom: 15px;
+}
+
+.back-btn {
+    margin-top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 20px;
+    background: #2575fc;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);
+}
+
+footer h2 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #ddd;
+    margin: 7px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px) {
+
+    nav {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .computer-icon {
+        width: 150px;
+        height: 150px;
+        font-size: 70px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     LOGIN PAGE
+================================================== -->
+
+<section id="loginPage">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            💻
+        </div>
+
+        <h1>BSc CS Notes</h1>
+
+        <p>
+            Login to access your study material
+        </p>
+
+        <form id="loginForm">
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                required
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+            >
+
+            <button type="submit">
+                Login 🚀
+            </button>
+
+        </form>
+
+        <div id="loginMessage"></div>
+
+        <div class="demo-login">
+            <b>Demo Login</b><br>
+            Username: <b>student</b><br>
+            Password: <b>1234</b>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     NOTES WEBSITE
+================================================== -->
+
+<section id="notesPage">
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo-text">
+        💻 BSc CS Notes
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#home">Home</a>
+
+        <a href="#fy">FYBSc</a>
+
+        <a href="#sy">SYBSc</a>
+
+        <a href="#ty">TYBSc</a>
+
+        <button class="logout-btn"
+                onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero" id="home">
+
+    <div class="hero-text">
+
+        <h1>
+            BSc Computer Science Notes 📚
+        </h1>
+
+        <p>
+            Topic-wise short notes for
+            Computer Science students.
+            Learn concepts quickly and
+            prepare for your exams.
+        </p>
+
+        <a href="#fy" class="explore-btn">
+            Explore Notes →
+        </a>
+
+    </div>
+
+    <div class="computer-icon">
+        💻
+    </div>
+
+</header>
+
+
+<!-- SEARCH -->
+
+<section class="search-section">
+
+    <h2>
+        🔍 Search Subject
+    </h2>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search Java, Python, DBMS, OS..."
+    >
+
+</section>
+
+
+
+<!-- ==================================================
+     FYBSc
+================================================== -->
+
+<section class="year-section" id="fy">
+
+<h2>🎓 FYBSc Computer Science</h2>
+
+<div class="subject-grid">
+
+
+<!-- PYTHON -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">🐍</div>
+
+    <h3>Python Programming</h3>
+
+    <p>
+        Learn Python programming
+        concepts and important topics.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Python Programming')">
+        View Topics
+    </button>
+
+</div>
+
+
+<!-- DBMS -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">🗄️</div>
+
+    <h3>Database System</h3>
+
+    <p>
+        DBMS, SQL, keys,
+        normalization and joins.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Database System')">
+        View Topics
+    </button>
+
+</div>
+
+
+<!-- DIGITAL -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">🖥️</div>
+
+    <h3>Digital System</h3>
+
+    <p>
+        Boolean algebra,
+        gates and flip-flops.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Digital System')">
+        View Topics
+    </button>
+
+</div>
+
+
+<!-- MATH -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">➗</div>
+
+    <h3>Mathematics</h3>
+
+    <p>
+        Important mathematical
+        concepts and formulas.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Mathematics')">
+        View Topics
+    </button>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- ==================================================
+     SYBSc
+================================================== -->
+
+<section class="year-section" id="sy">
+
+<h2>🎓 SYBSc Computer Science</h2>
+
+<div class="subject-grid">
+
+
+<!-- JAVA -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">☕</div>
+
+    <h3>Java Programming</h3>
+
+    <p>
+        OOP, inheritance,
+        exceptions and JDBC.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Java Programming')">
+        View Topics
+    </button>
+
+</div>
+
+
+<!-- DATA STRUCTURE -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">🌳</div>
+
+    <h3>Data Structures</h3>
+
+    <p>
+        Stack, queue, linked list,
+        tree, graph and hashing.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Data Structures')">
+        View Topics
+    </button>
+
+</div>
+
+
+<!-- OS -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">⚙️</div>
+
+    <h3>Operating System</h3>
+
+    <p>
+        Process, PCB, deadlock
+        and synchronization.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Operating System')">
+        View Topics
+    </button>
+
+</div>
+
+
+<!-- VECTOR -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">📐</div>
+
+    <h3>Vector Space</h3>
+
+    <p>
+        Vector space, subspace,
+        basis and dimension.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Vector Space')">
+        View Topics
+    </button>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- ==================================================
+     TYBSc
+================================================== -->
+
+<section class="year-section" id="ty">
+
+<h2>🎓 TYBSc Computer Science</h2>
+
+<div class="subject-grid">
+
+
+<!-- AI -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">🤖</div>
+
+    <h3>Artificial Intelligence</h3>
+
+    <p>
+        AI concepts and
+        intelligent systems.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Artificial Intelligence')">
+        View Topics
+    </button>
+
+</div>
+
+
+<!-- CYBER -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">🔐</div>
+
+    <h3>Cyber Security</h3>
+
+    <p>
+        Security, attacks,
+        encryption and protection.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Cyber Security')">
+        View Topics
+    </button>
+
+</div>
+
+
+<!-- CLOUD -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">☁️</div>
+
+    <h3>Cloud Computing</h3>
+
+    <p>
+        Cloud models, services
+        and virtualization.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Cloud Computing')">
+        View Topics
+    </button>
+
+</div>
+
+
+<!-- DATA SCIENCE -->
+
+<div class="subject-card">
+
+    <div class="subject-icon">📊</div>
+
+    <h3>Data Science</h3>
+
+    <p>
+        Data analysis,
+        visualization and ML.
+    </p>
+
+    <button class="notes-btn"
+            onclick="showTopics('Data Science')">
+        View Topics
+    </button>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>💻 BSc CS Notes</h2>
+
+<p>
+Learn • Practice • Succeed 🚀
+</p>
+
+<p>
+© 2026 BSc CS Notes
+</p>
+
+</footer>
+
+</section>
+
+
+
+<!-- ==================================================
+     TOPIC MODAL
+================================================== -->
+
+<div id="topicModal">
+
+    <div class="topic-box">
+
+        <span class="close"
+              onclick="closeTopics()">
+            ×
+        </span>
+
+        <h2 id="topicTitle"></h2>
+
+        <div id="topicContent"></div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* ==================================================
+   LOGIN
+================================================== */
+
+document.getElementById("loginForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    let username =
+        document.getElementById("username").value;
+
+    let password =
+        document.getElementById("password").value;
+
+    if(username === "student" &&
+       password === "1234") {
+
+        document.getElementById("loginPage")
+        .style.display = "none";
+
+        document.getElementById("notesPage")
+        .style.display = "block";
+
+    } else {
+
+        document.getElementById("loginMessage")
+        .innerHTML =
+        "❌ Invalid username or password";
+
+        document.getElementById("loginMessage")
+        .style.color = "red";
+    }
+
+});
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+function logout() {
+
+    document.getElementById("notesPage")
+    .style.display = "none";
+
+    document.getElementById("loginPage")
+    .style.display = "flex";
+
+    document.getElementById("username").value = "";
+
+    document.getElementById("password").value = "";
+}
+
+
+
+/* ==================================================
+   NOTES DATABASE
+================================================== */
+
+const notes = {
+
+
+/* ================= PYTHON ================= */
+
+"Python Programming": {
+
+"Variables":
+"Variables are names used to store data values in a program.",
+
+"Data Types":
+"Common Python data types include int, float, string, boolean, list, tuple and dictionary.",
+
+"Operators":
+"Operators are symbols used to perform operations such as arithmetic, comparison and logical operations.",
+
+"Conditional Statements":
+"If, elif and else are used to execute different blocks of code based on conditions.",
+
+"Loops":
+"For and while loops are used to repeat a block of statements.",
+
+"Functions":
+"A function is a reusable block of code created using the def keyword.",
+
+"Lists":
+"A list is an ordered and changeable collection that can store multiple values.",
+
+"Tuples":
+"A tuple is an ordered collection that cannot be changed after creation.",
+
+"Dictionary":
+"A dictionary stores data in key-value pairs.",
+
+"File Handling":
+"File handling is used to create, read, write and close files using Python."
+
+
+},
+
+
+
+/* ================= DBMS ================= */
+
+"Database System": {
+
+"Database":
+"A database is an organized collection of related data.",
+
+"DBMS":
+"DBMS is software used to create, store, manage and retrieve data from databases.",
+
+"Entity":
+"An entity is a real-world object about which information is stored.",
+
+"Attributes":
+"Attributes are properties or characteristics of an entity.",
+
+"Primary Key":
+"A primary key uniquely identifies each record in a table.",
+
+"Foreign Key":
+"A foreign key connects one table with another table.",
+
+"SQL":
+"SQL is a language used to create, retrieve, update and delete data in databases.",
+
+"Normalization":
+"Normalization organizes data to reduce redundancy and improve data consistency.",
+
+"Joins":
+"Joins are used to combine records from two or more related tables.",
+
+"Transaction":
+"A transaction is a logical unit of database operations."
+
+
+},
+
+
+
+/* ================= DIGITAL ================= */
+
+"Digital System": {
+
+"Number System":
+"Number systems represent values using different bases such as binary, decimal, octal and hexadecimal.",
+
+"Boolean Algebra":
+"Boolean algebra deals with logical values 0 and 1 and operations such as AND, OR and NOT.",
+
+"Logic Gates":
+"Logic gates perform logical operations on binary inputs.",
+
+"AND Gate":
+"AND gate produces 1 only when all inputs are 1.",
+
+"OR Gate":
+"OR gate produces 1 when at least one input is 1.",
+
+"NOT Gate":
+"NOT gate produces the complement of its input.",
+
+"Flip-Flop":
+"A flip-flop is a sequential circuit used to store one bit of information.",
+
+"Half Adder":
+"A half adder adds two binary bits and produces sum and carry.",
+
+"Full Adder":
+"A full adder adds three binary inputs including carry input.",
+
+"Multiplexer":
+"A multiplexer selects one input from multiple inputs."
+
+
+},
+
+
+
+/* ================= MATH ================= */
+
+"Mathematics": {
+
+"Set":
+"A set is a well-defined collection of distinct objects.",
+
+"Relation":
+"A relation represents a connection between elements of two sets.",
+
+"Function":
+"A function maps every element of the domain to exactly one element of the codomain.",
+
+"Matrix":
+"A matrix is a rectangular arrangement of numbers in rows and columns.",
+
+"Determinant":
+"A determinant is a scalar value calculated from a square matrix.",
+
+"Probability":
+"Probability measures the likelihood of occurrence of an event.",
+
+"Mean":
+"Mean is calculated by dividing the sum of values by the number of values.",
+
+"Median":
+"Median is the middle value when data is arranged in order."
+
+
+},
+
+
+
+/* ================= JAVA ================= */
+
+"Java Programming": {
+
+"Java":
+"Java is a high-level, object-oriented and platform-independent programming language.",
+
+"Class":
+"A class is a blueprint used to create objects.",
+
+"Object":
+"An object is an instance of a class.",
+
+"Constructor":
+"A constructor is a special method used to initialize objects.",
+
+"Inheritance":
+"Inheritance allows a class to acquire properties and methods of another class.",
+
+"Polymorphism":
+"Polymorphism means one interface or method can have multiple forms.",
+
+"Encapsulation":
+"Encapsulation combines data and methods into a single unit.",
+
+"Abstraction":
+"Abstraction hides implementation details and shows only essential features.",
+
+"Exception Handling":
+"Exception handling manages runtime errors using try, catch and finally.",
+
+"JDBC":
+"JDBC allows Java programs to connect and interact with databases."
+
+
+},
+
+
+
+/* ================= DATA STRUCTURE ================= */
+
+"Data Structures": {
+
+"Data Structure":
+"A data structure is a method of organizing and storing data efficiently.",
+
+"Array":
+"An array stores elements of the same type in contiguous memory locations.",
+
+"Stack":
+"Stack follows LIFO, meaning Last In First Out.",
+
+"Queue":
+"Queue follows FIFO, meaning First In First Out.",
+
+"Linked List":
+"A linked list consists of nodes connected using links or pointers.",
+
+"Tree":
+"A tree is a hierarchical non-linear data structure.",
+
+"Binary Tree":
+"A binary tree is a tree where each node has at most two children.",
+
+"Graph":
+"A graph consists of vertices and edges used to represent relationships.",
+
+"Hashing":
+"Hashing converts a key into an index for efficient data access.",
+
+"Huffman Coding":
+"Huffman coding is a lossless compression technique that uses variable-length codes."
+
+
+},
+
+
+
+/* ================= OS ================= */
+
+"Operating System": {
+
+"Operating System":
+"An operating system manages hardware, software and system resources.",
+
+"Process":
+"A process is a program that is currently being executed.",
+
+"PCB":
+"Process Control Block stores information about a process such as process ID and state.",
+
+"Process Synchronization":
+"Process synchronization controls access to shared resources among processes.",
+
+"Race Condition":
+"A race condition occurs when the output depends on the order of concurrent operations.",
+
+"Deadlock":
+"Deadlock occurs when processes wait indefinitely for resources held by each other.",
+
+"Semaphore":
+"A semaphore is a synchronization mechanism used to control access to shared resources.",
+
+"Memory Management":
+"Memory management controls allocation and deallocation of main memory.",
+
+"File Management":
+"File management organizes, stores and controls files on a computer system.",
+
+"Scheduling":
+"CPU scheduling decides which process gets the CPU next."
+
+
+},
+
+
+
+/* ================= VECTOR ================= */
+
+"Vector Space": {
+
+"Vector":
+"A vector is a quantity having magnitude and direction.",
+
+"Vector Space":
+"A vector space is a set of vectors closed under vector addition and scalar multiplication.",
+
+"Subspace":
+"A subspace is a subset of a vector space that is itself a vector space.",
+
+"Linear Combination":
+"A linear combination is formed by multiplying vectors by scalars and adding them.",
+
+"Linear Independence":
+"Vectors are linearly independent if none of them can be represented using the others.",
+
+"Basis":
+"A basis is a linearly independent set that spans a vector space.",
+
+"Dimension":
+"Dimension is the number of vectors in a basis of a vector space."
+
+
+},
+
+
+
+/* ================= AI ================= */
+
+"Artificial Intelligence": {
+
+"Artificial Intelligence":
+"AI is the field of computer science that develops systems capable of performing intelligent tasks.",
+
+"Machine Learning":
+"Machine learning enables computers to learn patterns from data.",
+
+"Expert System":
+"An expert system uses knowledge and rules to solve problems in a specific domain.",
+
+"Search":
+"Search algorithms explore possible states to find a solution.",
+
+"BFS":
+"Breadth First Search explores nodes level by level.",
+
+"DFS":
+"Depth First Search explores as far as possible before backtracking.",
+
+"Knowledge Representation":
+"It is the method of storing knowledge so that an AI system can use it.",
+
+"Natural Language Processing":
+"NLP enables computers to understand and process human language."
+
+
+},
+
+
+
+/* ================= CYBER ================= */
+
+"Cyber Security": {
+
+"Cyber Security":
+"Cyber security protects computers, networks and data from unauthorized access.",
+
+"Malware":
+"Malware is malicious software designed to damage or exploit computer systems.",
+
+"Virus":
+"A virus is malicious code that can replicate by attaching itself to files or programs.",
+
+"Phishing":
+"Phishing is an attack that tricks users into revealing sensitive information.",
+
+"Encryption":
+"Encryption converts readable data into an unreadable form to protect it.",
+
+"Firewall":
+"A firewall monitors and controls network traffic based on security rules.",
+
+"Authentication":
+"Authentication verifies the identity of a user.",
+
+"Cyber Attack":
+"A cyber attack is an attempt to damage, disrupt or gain unauthorized access to systems."
+
+
+},
+
+
+
+/* ================= CLOUD ================= */
+
+"Cloud Computing": {
+
+"Cloud Computing":
+"Cloud computing provides computing resources over the internet.",
+
+"IaaS":
+"Infrastructure as a Service provides virtual machines, storage and networking resources.",
+
+"PaaS":
+"Platform as a Service provides a platform for developing and deploying applications.",
+
+"SaaS":
+"Software as a Service provides software applications over the internet.",
+
+"Public Cloud":
+"A public cloud provides services to multiple users over the internet.",
+
+"Private Cloud":
+"A private cloud is dedicated to a particular organization.",
+
+"Hybrid Cloud":
+"Hybrid cloud combines public and private cloud environments.",
+
+"Virtualization":
+"Virtualization creates virtual versions of computing resources such as servers."
+
+
+},
+
+
+
+/* ================= DATA SCIENCE ================= */
+
+"Data Science": {
+
+"Data Science":
+"Data science uses statistics, programming and algorithms to extract useful information from data.",
+
+"Data Collection":
+"Data collection is the process of gathering relevant information from different sources.",
+
+"Data Cleaning":
+"Data cleaning removes errors, duplicates and inconsistent values.",
+
+"Data Analysis":
+"Data analysis examines data to find useful patterns and information.",
+
+"Data Visualization":
+"Data visualization represents data using charts, graphs and plots.",
+
+"Machine Learning":
+"Machine learning allows systems to learn patterns from data.",
+
+"NumPy":
+"NumPy is a Python library used for numerical and array operations.",
+
+"Pandas":
+"Pandas is a Python library used for data manipulation and analysis."
+
+
+}
+
+};
+
+
+
+/* ==================================================
+   SHOW TOPICS
+================================================== */
+
+function showTopics(subject) {
+
+    let modal =
+        document.getElementById("topicModal");
+
+    let title =
+        document.getElementById("topicTitle");
+
+    let content =
+        document.getElementById("topicContent");
+
+    title.innerHTML =
+        "📚 " + subject + " - Topics";
+
+    let topicHTML =
+        '<div class="topic-list">';
+
+    let subjectNotes =
+        notes[subject];
+
+    for(let topic in subjectNotes) {
+
+        topicHTML += `
+
+            <button
+                class="topic-button"
+                onclick="showNote(
+                    '${subject}',
+                    '${topic}'
+                )">
+
+                📖 ${topic}
+
+            </button>
+
+        `;
+    }
+
+    topicHTML += "</div>";
+
+    content.innerHTML = topicHTML;
+
+    modal.style.display = "block";
+}
+
+
+
+/* ==================================================
+   SHOW SHORT NOTE
+================================================== */
+
+function showNote(subject, topic) {
+
+    let content =
+        document.getElementById("topicContent");
+
+    let note =
+        notes[subject][topic];
+
+    content.innerHTML = `
+
+        <div class="short-note">
+
+            <h3>
+                📖 ${topic}
+            </h3>
+
+            <p>
+                ${note}
+            </p>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="showTopics('${subject}')">
+
+            ← Back to Topics
+
+        </button>
+
+    `;
+}
+
+
+
+/* ==================================================
+   CLOSE MODAL
+================================================== */
+
+function closeTopics() {
+
+    document.getElementById("topicModal")
+    .style.display = "none";
+
+}
+
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+document
+.getElementById("searchInput")
+.addEventListener("keyup", function() {
+
+    let search =
+        this.value.toLowerCase();
+
+    let cards =
+        document.querySelectorAll(".subject-card");
+
+    cards.forEach(function(card) {
+
+        let text =
+            card.innerText.toLowerCase();
+
+        if(text.includes(search)) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+});
+
+
+/* Close modal by clicking outside */
+
+window.onclick = function(event) {
+
+    let modal =
+        document.getElementById("topicModal");
+
+    if(event.target === modal) {
+
+        modal.style.display = "none";
+
+    }
+
+};
+
+</script>
+
+</body>
+</html>
+```
